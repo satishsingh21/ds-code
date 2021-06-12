@@ -2,11 +2,7 @@ class Reverse  {
 
     reverse(str) {
         const isValid = this.validateForString(str);
-        console.log('isValid status is', isValid);
-        if(!isValid) {
-            console.log('Not a valid Stirng ' + str); 
-            return;
-        }
+        if(!isValid) return str;
         if(isValid && str.length === 1) return str;
         const strArray = str.split('');
         const strLength = strArray.length;
@@ -44,13 +40,13 @@ class Reverse  {
 
 const reverse = new Reverse();
 const updateStr1 = reverse.reverse("Hello");
-console.log(updateStr1);
+console.log('updated string is ', updateStr1);
 
 const updateStr2 = reverse.reverse("");
-console.log(updateStr2);
+console.log('updated string is ', updateStr2);
 
 const updateStr3 = reverse.reverse("     ");
-console.log(updateStr3);
+console.log('updated string is ', updateStr3);
 
 const updateStr4 = reverse.reverse(null);
-console.log(updateStr4);
+console.log('updated string is ', updateStr4);
