@@ -11,8 +11,8 @@
     "experimentalDecorators": true
   },
   "include": [
-      "src/*.ts"
-  ],
+      "src/**/*.ts"
+, "src/string/reverseString.ts", "src/number/sumUptoN.ts", "src/array/twoArrayConainSameItemType1.ts"  ],
   "exclude": [
       "node_modules"
   ]

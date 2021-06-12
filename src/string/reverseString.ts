@@ -5,8 +5,7 @@ class Reverse  {
         if(!isValid) return `invaild ${str}`;
         if(isValid && str.length === 1) return `invaild ${str}`;
         const strArray = str.split('');
-        const strLength = strArray.length;
-        const swapArray = this.swap(strArray, strLength);
+        const swapArray = this.swap(strArray, strArray.length);
         return swapArray.join('');
     }
 

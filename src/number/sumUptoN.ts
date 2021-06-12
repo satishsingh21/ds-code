@@ -36,6 +36,3 @@ console.log('result is', result);
 const result1 = sumUptoN.sum(null);
 console.log('result is', result1);
 
-const result2 = sumUptoN.sum("num");
-console.log('result is', result2);
-
