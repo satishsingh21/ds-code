@@ -10,32 +10,32 @@ class SumUptoN  {
     // }
 
     // It has time complexity on O(1)
-    sum(num) {
-        const isValid = this.validateForNumber(num);
+    sum(num: number): number | string {
+        const isValid: boolean = this.validateForNumber(num);
         if(!isValid) return `invaild ${num}`;
         if(isValid && (num === 1)) return num;
         return num*(num+1)/2;
     }
 
-    validateForNumber(str){
+    private validateForNumber(num: number): boolean{
         // check for null
-        if(!str) return false;
+        if(!num) return false;
 
         // check if input is number
-        if(typeof str !== 'number')  return false;
+        if(typeof num !== 'number')  return false;
 
         return true
-
     }
 }
 
 const sumUptoN = new SumUptoN();
+
 const result = sumUptoN.sum(5);
 console.log('result is', result);
 
 const result1 = sumUptoN.sum(null);
 console.log('result is', result1);
 
-const result2 = sumUptoN.sum("str");
+const result2 = sumUptoN.sum("num");
 console.log('result is', result2);
 

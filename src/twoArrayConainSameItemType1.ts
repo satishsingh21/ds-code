@@ -6,7 +6,7 @@
 */
 
 // Thing to ask 
-// Is it pre-fefined which array is smaller 
+// Is it pre-defined which array is smaller 
 
 // Consider array 1 smaller
 
