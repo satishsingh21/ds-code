@@ -28,11 +28,11 @@ class CompareArray {
         const objCounter2 = {};
 
         // O(n)
-        arr1.every((item: number) => {
+        arr1.forEach((item: number) => {
             objCounter1[item] = (objCounter1[item] || 0) + 1
         });
         // O(n)
-        arr2.every((item: number) => {
+        arr2.forEach((item: number) => {
             objCounter2[item] = (objCounter1[item] || 0) + 1
         });
 
