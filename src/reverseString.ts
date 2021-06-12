@@ -2,8 +2,8 @@ class Reverse  {
 
     reverse(str) {
         const isValid = this.validateForString(str);
-        if(!isValid) return str;
-        if(isValid && str.length === 1) return str;
+        if(!isValid) return `invaild ${str}`;
+        if(isValid && str.length === 1) return `invaild ${str}`;
         const strArray = str.split('');
         const strLength = strArray.length;
         const swapArray = this.swap(strArray, strLength);
