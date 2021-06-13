@@ -11,7 +11,9 @@ class Anagram {
         if(s1s.size !== s2s.size) return false
 
         // check if all key in set1 is present in set 2 or not
+        // Time Complexity O(n)
         for(let key of s1s)
+            // has() method has Time Complexity of O(1)
             if(s2s.has(key) === false) return false
         
         return true;
