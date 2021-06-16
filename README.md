@@ -9,4 +9,4 @@ npm run build
 
 
 **To run specific js file**
-npm run dist/folder_name/file_name.js
+node dist/folder_name/file_name.js
