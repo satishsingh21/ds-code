@@ -8,10 +8,6 @@
 
 
 class SelectionSort {
-    // optimized solution .Here noswap is useful when array is almost sorted
-    // without no swap it is O(n2). but if array is almost sorted with noswap flag
-    // it will be O(n) 
-
     sort(arr: number[]): number[]{
         for(let i = 0; i< arr.length; i++){
 
