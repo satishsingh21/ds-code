@@ -1,13 +1,15 @@
 export class Node {
     value: any;
     next: any;
+    prev: any;
     constructor(value){
         this.value = value;
         this.next = null;
+        this.prev = null
     }
 }
 
-class SingleLinkedList {
+class DoublyLinkedList {
     head: any;
     tail: any;
     length: number;
@@ -21,14 +23,16 @@ class SingleLinkedList {
         const newNode = new Node(value);
 
         // when list is empty
-        if(!this.head) {
+        if(this.length === 0) {
             this.head = newNode;
-            this.tail = this.head;
+            this.tail = newNode;
         } else { // when list is not empty
 
             // point tail to new node
             this.tail.next = newNode;
 
+            // point back newnode prev to old tail
+            newNode.prev = this.tail;
             // set new node as our tail
             this.tail = newNode;
         }
@@ -42,29 +46,18 @@ class SingleLinkedList {
 
          // when list is not empty
          // point temporary tail and currentNode to head
-        let currentNode = this.head;
-        let newTail = currentNode;
+        let poppedNode = this.tail;
 
-        // traverse to end of list
-        while(currentNode.next){
-
-            // update tail and current node while traversal
-            newTail = currentNode;
-
-            // current node will point next item in list while tail lag by 1 node in list 
-            currentNode = currentNode.next;
-        }
-
-        // update tail with newTail
-        this.tail = newTail;
-        this.length--;
-
-        // when list is empty
-        if(this.length === 0){
+        if(this.length === 1){
             this.head = null;
-            this.tail = null; 
+            this.tail = null;
+        } else {
+            this.tail = poppedNode.prev;
+            this.tail = null;
+            poppedNode.prev = null;
         }
-        return currentNode;
+        this.length--;
+        return poppedNode;
     }
 
     shift() {
@@ -187,10 +180,10 @@ class SingleLinkedList {
     }
 }
 
-const sll = new SingleLinkedList();
-sll.push("hi");
-sll.push("hi1");
-sll.push("hi2");
-sll.push("hi3");
-sll.push("hi4");
-sll.reverse();
+const dll = new DoublyLinkedList();
+dll.push("hi");
+dll.push("hi1");
+dll.push("hi2");
+dll.push("hi3");
+dll.push("hi4");
+dll.reverse();
