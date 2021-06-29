@@ -48,12 +48,18 @@ class DoublyLinkedList {
          // point temporary tail and currentNode to head
         let poppedNode = this.tail;
 
+        // when list has 1 item
         if(this.length === 1){
             this.head = null;
             this.tail = null;
         } else {
+            // set previous node as tail
             this.tail = poppedNode.prev;
+
+            // new tail to point to null
             this.tail = null;
+
+            // set existing reference of removed node to null for garbage colection
             poppedNode.prev = null;
         }
         this.length--;
@@ -64,25 +70,41 @@ class DoublyLinkedList {
         // when list is empty
         if(!this.head) return undefined;
 
-        let currentHead = this.head;
-        this.head = currentHead.next;
+        let oldHead = this.head;
+
+        // when list has 1 item
+        if(this.length === 1){
+            this.head = null;
+            this.tail = null;
+        } else {
+            // set next node as new head
+            this.head = oldHead.next;
+
+            // set new head prev as null
+            this.head.prev = null;
+
+            // set existing reference of removed node to null for garbage colection
+            oldHead.next = null;
+        }
         this.length--;
 
-        // when list is empty
-        if(this.length === 0){
-            this.tail = null; 
-        }
-        return currentHead;
+        return oldHead;
     }
 
     unshift(value){
         let newNode  = new Node(value);
         // when list is empty
-        if(!this.head) {
+        if(this.length === 0) {
             this.head = newNode;
-            this.tail = this.head;
+            this.tail = newNode;
         } else {
+            // set existing  head prev to new node
+            this.head.prev = newNode;
+
+            // set new node next to existing head
             newNode['next'] = this.head;
+
+            // set head to new node
             this.head = newNode;
         }
         this.length++;
@@ -91,18 +113,30 @@ class DoublyLinkedList {
 
     get(index){
         if(index < 0 || index >= this.length) return null;
-        let counter = 0;
-        let currentNode = this.head;
-        while(counter !== index){
-            counter++;
-            currentNode = currentNode.next;
+        let counter, currentNode;
+        // index is close to head 
+        if(index <= this.length/2) {
+            counter = 0;
+            currentNode = this.head;
+            while(counter !== index){
+                counter++;
+                currentNode = currentNode.next;
+            }
+        } else { // index is close to tail 
+            counter = this.length - 1;
+            currentNode = this.tail;
+            while(counter !== index){
+                counter--;
+                currentNode = currentNode.prev;
+            }  
         }
         return currentNode;
+        
     }
 
     set(index, value){
         let foundNode = this.get(index)
-        if( foundNode) {
+        if(foundNode) {
             foundNode.value = value;
             return true;
         }
@@ -113,21 +147,22 @@ class DoublyLinkedList {
         // if index is invalid
         if(index < 0 || index > this.length) return false;
 
-        // if index is of size of list
+        // if index is of size of list then insert and return true
         if(index === this.length) return !!this.push(value);
 
-        // if index point to 0th element
+        // if index point to 0th element then insert and return true
         if(index === 0) return !!this.unshift(value);
 
         let newNode = new Node(value);
 
-        // Get previvoius node from the index 
-        let prevIndexNode = this.get(index - 1);
+        // Get previvoius and after node from the index 
+        let beforeIndexNode = this.get(index - 1);
+        let afterIndexNode = beforeIndexNode.next;
 
-        // swap
-        let temp = prevIndexNode.next;
-        prevIndexNode.next = newNode;
-        newNode['next'] = temp;
+        beforeIndexNode.next = newNode;
+        newNode.prev = beforeIndexNode;
+        newNode.next = afterIndexNode;
+        afterIndexNode.prev = newNode;
         
         this.length++
         return true;
@@ -144,13 +179,21 @@ class DoublyLinkedList {
         if(index === this.length - 1) return !!this.pop();
 
         // Get previvoius node from the index 
-        let prevIndexNode = this.get(index - 1);
+        let removedNode = this.get(index - 1);
 
-        let removed = prevIndexNode.next;
-        prevIndexNode.next = removed.next;
-        
+        let beforeNode = removedNode.prev;
+        let afterNode = removedNode.next; 
+        beforeNode.next = afterNode;
+        afterNode.prev = beforeNode;
+        // Abobe 4 line could be replaced with beolw 2 line but that look more cleaner
+
+        // removedNode.prev.next = removedNode.next;
+        // removedNode.next.prev = removedNode.prev;
+        removedNode.next = null;
+        removedNode.prev = null;
+
         this.length--;
-        return removed;
+        return removedNode;
     }
 
     reverse(){

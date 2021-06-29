@@ -120,10 +120,10 @@ class SingleLinkedList {
         // if index is invalid
         if(index < 0 || index > this.length) return false;
 
-        // if index is of size of list
+        // if index is of size of list then insert and return true
         if(index === this.length) return !!this.push(value);
 
-        // if index point to 0th element
+        // if index point to 0th element then insert and return true
         if(index === 0) return !!this.unshift(value);
 
         let newNode = new Node(value);
