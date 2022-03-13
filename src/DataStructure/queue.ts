@@ -10,7 +10,9 @@ class Queue
 	// Array is used to implement a Queue
 	constructor()
 	{
+		// lets create an empty aary
 		this['items'] = [];
+		this['size'] = 0;
 	}
 				
 	// enqueue(item)

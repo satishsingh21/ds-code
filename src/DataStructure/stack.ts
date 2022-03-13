@@ -10,7 +10,9 @@ class Stack {
 	// Array is used to implement stack
 	constructor()
 	{
+		// lets create an empty aary
 		this['items'] = [];
+		this['size'] = 0;
 	}
 
 	// push(item)
