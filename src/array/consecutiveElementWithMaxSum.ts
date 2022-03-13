@@ -20,4 +20,4 @@ class ConsecutiveElementOfSizeNWithMaxSum {
 }
 const ceMaxSum = new ConsecutiveElementOfSizeNWithMaxSum();
 const sum = ceMaxSum.maxSum([1,2,3,4,5,9,8,7,3,5], 4);
-console.log('maximum sum of consecutive element of size n', sum);
+console.log('Maximum sum of consecutive element of size n', sum);
